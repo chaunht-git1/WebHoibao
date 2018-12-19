@@ -1,0 +1,127 @@
+.box{
+    margin-top: 0px;
+    padding:   0 2px 0 2px;
+    
+}
+
+.boxdiv{
+    margin-top: 0px;
+    padding:   0 2px 0 2px;
+    margin-bottom: 0px;
+}
+
+
+.tieudenho{
+    font-weight: bold;
+    font-size: medium;
+    color: blue;
+}
+
+.noidung{
+    
+    color: blue;
+    border: none;
+    
+}
+
+.noidung_red{
+    
+    color: red;
+    font-size: larger;
+    font-weight: bold;
+    
+}
+
+.noidung_imp{
+    background: yellow;
+    color: black;
+    
+}
+
+.wellcustom {
+  min-height: 10px;
+  padding: 8px;
+  margin-bottom: 5px;
+  background-color: #f9f2f4;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+ 
+}
+
+.loadding-inner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 80px;
+    background: #fff;
+    margin-left: -50px;
+    margin-top: -50px;
+    text-align: center;
+    border: 1px solid #c3c1c1;
+}
+
+.error{
+    
+    color: red;
+    
+}
+#loading {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(179, 179, 179, 0.39);
+    z-index:9999;/* display:none; */
+    
+}
+
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+    
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+#text {
+  z-index: 100;
+  position: absolute;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  left: 150px;
+  top: 350px;
+}
+
+.imageAndText {position: relative;} 
+    .imageAndText .col {position:
+        absolute; z-index: 1; top: 0; left: 0;}

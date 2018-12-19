@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+ 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />	
+        <h:outputStylesheet name="resources/css/default.css"/>
+        <h:outputStylesheet name="resources/css/cssLayout.css"/>
+        <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+        <title>Tìm kiếm khách hàng</title>
+    </h:head>
+    <h:body>
+         <div>
+            <h:form id="timkiemkhachhang" >  
+                <p:messages id="messages" showSummary="false" showDetail="true" autoUpdate="true" closable="true" />
+                <p:panel header="Thông tin chi tiết khách hàng" >
+                       <p:row>
+                           <p:panelGrid columns="4">
+                               <p:outputLabel value="Số biên nhận:#{chuanhoakhManagedBean.khachhangchuanhoaModel.receiptCode}"/>
+                               <p:outputLabel value="Họ tên:#{chuanhoakhManagedBean.khachhangchuanhoaModel.receiverName}"/>
+                               <p:outputLabel value="Số chứng từ:#{chuanhoakhManagedBean.khachhangchuanhoaModel.idCardNumber}"/>   
+                               <p:outputLabel value="Điện thoại:#{chuanhoakhManagedBean.khachhangchuanhoaModel.receiverPhone}"/>   
+                               <p:outputLabel value="Mã khách hàng:#{chuanhoakhManagedBean.khachhangmodel.customerCode}"/>
+                               <p:outputLabel value="Loại giấy tờ:#{chuanhoakhManagedBean.khachhangmodel.idCardTypeCode}"/>
+                               <p:outputLabel value="Số chứng từ:#{chuanhoakhManagedBean.khachhangmodel.idCardNumber}"/>   
+                               <p:outputLabel value="Trạng thái kh:#{chuanhoakhManagedBean.khachhangmodel.infoStatus}"/>   
+                               </p:panelGrid>
+                           
+                        </p:row>
+                      <p:separator/>
+                        <p:row >
+                            <p:column colspan="4">
+                                <h:commandButton value="Lưu khách hàng"  action="#{chuanhoakhManagedBean.capnhatkhachhang2018(chuanhoakhManagedBean.khachhangmodel,loginManagerBean.username,chuanhoakhManagedBean.khachhangchuanhoaModel.receiptCode)}"  />
+                            </p:column>
+                           
+                        </p:row>
+                      <p:separator/>
+                      <p:row >
+                          <p:panelGrid columns="2">
+                          <p:column colspan="4">
+                          <p:panelGrid columns="2">
+                              <p:outputLabel value="Ngày cấp:"  />
+                              <p:inputText id="ngaycaptkh" value="#{chuanhoakhManagedBean.khachhangmodel.dateOfIssueDateValue}"  >
+                                               <f:convertDateTime pattern="dd/MM/yyyy"/>
+                              </p:inputText>
+                               <h:outputLabel value="Nơi cấp:"  />
+                                 <p:selectOneMenu id="noicaptkh"   value="#{chuanhoakhManagedBean.khachhangmodel.placeOfIssue}" required="false" requiredMessage="Chọn nơi cấp giấy tờ của khách hàng">
+                                    <f:selectItem itemLabel="--Chọn nơi cấp giấy tờ--"/>
+                                    <f:selectItems var="city" value="#{globalManagedBean.cityLists}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" />	   							
+                                </p:selectOneMenu>
+                                 <h:outputLabel value="Giới tính:"  />
+                                 <p:selectOneMenu id="gioitinhtkh" immediate="true" value="#{chuanhoakhManagedBean.khachhangmodel.gender}"   requiredMessage="Chọn giới tính của khách hàng">
+                                    <f:selectItem itemLabel="--Chọn giới tính--" />  
+                                    <f:selectItem itemValue="0" itemLabel="Nam" />      
+                                    <f:selectItem itemValue="1" itemLabel="Nữ" />     
+                                </p:selectOneMenu>
+                                  <h:outputLabel value="Ngày sinh:"  />
+                                  <p:inputText id="ngaysinh" value="#{chuanhoakhManagedBean.khachhangmodel.dateOfBirthDateValue}" required="true" >
+                                               <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                  </p:inputText>
+            
+                                    <h:outputLabel value="Nghề nghiệp:"  />
+                                    <h:selectOneMenu id="tenDoitac" class="dropdown input-sm" style="min-width: 300px"  value="#{chuanhoakhManagedBean.khachhangmodel.jobCode}" required="false" requiredMessage="Chọn Nghề Nghiệp"   >
+                                                <f:selectItem  itemLabel="--Chọn Nghề Nghiệp--"/>
+                                                <f:selectItems var="datachoice" value="#{globalManagedBean.jobModels}" itemValue="#{datachoice.jobCode}" itemLabel="#{datachoice.jobName}" />
+                                     </h:selectOneMenu>
+                          </p:panelGrid>
+                          </p:column>    
+                          <p:column colspan="6">
+                               <p:graphicImage id="xembn" styleClass="align-center img-responsive"  value="DisplayImage?id=#{chuanhoakhManagedBean.khachhangchuanhoaModel.receiptCode}" height="150px"   />
+                          </p:column>
+                          </p:panelGrid>
+                      </p:row>
+                </p:panel>
+            </h:form>
+         </div>
+    </h:body>
+    
+</html>

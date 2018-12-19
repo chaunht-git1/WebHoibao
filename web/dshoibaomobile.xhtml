@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+   <div class="container">
+       <h:form>
+           <div class="form-group well well-sm">
+            
+               <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+                <div class="btn-group">     
+                    <div class="input-group">
+                        <h:inputText  class="form-control" value="#{hoibaoManagedBean.tencntimkiem}" a:placeholder="Tìm kiếm..." />
+                           <span class="input-group-btn">
+                               <h:commandButton id="btnlenbaocao" class="btn btn-primary" value="Tìm"   action="#{hoibaoManagedBean.locdulieudshoso(hoibaoManagedBean.tencntimkiem)}"   ></h:commandButton> 
+                           </span> 
+                           <span class="input-group-btn">
+                               <h:commandButton id="btnlenbaocao1" class="btn btn-warning" value="All"   action="#{hoibaoManagedBean.locdulieudshoso('ALL')}"   ></h:commandButton> 
+                           </span> 
+                           <span class="input-group-btn">
+                               <h:commandButton id="btnlenbaocao2" class="btn btn-success" value="Làm mới"   action="#{hoibaoManagedBean.chuyentrangdshoibao('C')}"></h:commandButton> 
+                           </span> 
+                       </div>   
+                </div>
+           </div>
+           
+           <ui:repeat id="showdata" var="o" value="#{hoibaoManagedBean.chitietgiaodichModels}" varStatus="status">
+
+               <div class="col-lg-3 well" style="min-height: 650px">   
+                       <div class="form-group form-inline">
+                        <div class="form-group form-inline">
+                         <h:outputLabel value= "#{status.index+1}"  style="border: 0px;color: red"/>
+                           -
+                           <h:outputLabel value="#{o.sobn}" style="color: blue"/>
+                        </div>
+                       -  
+                        <h:outputLabel value="MKH:"/>   
+                        <h:commandLink class="l" value="#{o.makhachhang} " style="background: yellow" action="#{chuanhoakhManagedBean.timtheoloaigiayto(o.makhachhang,o)}" />
+                   </div>
+                       <div class="form-group well well-sm">
+                       <div class="form-group">
+                           <div class="input-group">
+ 
+                               <h:inputText  class="form-control"  a:placeholder="Số CMND"  value="#{o.socttuythan}"  />
+
+                                
+                           </div>   
+                       </div>  
+
+                       <div class="form-group">
+                           <h:inputTextarea class="form-control"   a:placeholder="Lý do xác minh ..."  cols="2" value="#{o.lydoxacminh}" readonly="false" style="color: blue"/>
+                       </div>
+                        <div class="form-group">
+                           <h:commandButton id="btnxacminh" class="btn btn-warning form-control" value="Xác minh"   action="#{hoibaoManagedBean.capnhatxacminhdate(o)}"   ></h:commandButton> 
+                       </div>    
+           
+                   </div>  
+                   
+                               
+              
+                   <div class="form-group">
+                       <h:outputLabel value="Đ hồ sơ:"/>   
+                       <h:outputLabel value="#{o.dotnhantien}" style="background: yellow" />         
+                   </div> 
+                   <div class="form-group">
+                       <h:outputLabel value="#{o.tendoitac}"/>         
+                   </div> 
+                   <div class="form-group form-inline">
+                       <h:outputLabel value="N gửi:"/>   
+                       <h:outputLabel value="#{o.nguoigoi}"/>
+                   </div>  
+                   <div class="form-group form-inline">
+                        <h:outputLabel value="H.tên:"/>   
+                       <h:outputLabel value="#{o.hoten}" style="color: blue"/>
+                   </div>   
+                  <div class="form-group">
+                       <h:outputLabel value="Mã NN:"/>  
+                       <h:outputLabel value="#{o.manguoinhan}"/>
+                   </div>
+                   <div class="form-group form-inline">
+                       <h:outputLabel value="Số tiền "/>   
+                       :
+                       <h:outputLabel value="#{o.sotiengoi}" style="color: red">
+                           <f:convertNumber pattern="###,###,###.##"/>
+                       </h:outputLabel>
+                        <h:outputLabel value="#{o.loaitien}"/>                  
+                   </div>
+                   <div class="form-group form-inline">
+                        <h:outputLabel value="Tỷ giá "/>   
+                       <h:outputLabel value="#{o.tygia}"/>
+                       -
+                       <h:outputLabel value="Thành tiền "/>   
+                       <h:outputLabel value="#{o.thanhtien}"/>
+                   </div>
+                    <div class="form-group">
+                        <h:outputLabel  class="form-control" value="#{o.sodienthoai}" style="color: blue" />
+                   </div>
+                   
+                    <div class="form-group">
+                        <h:inputTextarea  class="form-control" value="#{o.diachi}" rows="3" readonly="true"/>
+                   </div>
+                   <div class="form-group">
+                       <h:inputTextarea class="form-control"   a:placeholder="Lý do xác minh phải lớn hơn 10 ký tự ..."  cols="2" value="#{o.lydoxacminh}" readonly="true" style="color: blue"/>
+                   </div>
+                
+               </div>
+           </ui:repeat>
+         
+       </h:form>
+
+   </div>
+ 
+        
+    </ui:define>
+</ui:composition> 

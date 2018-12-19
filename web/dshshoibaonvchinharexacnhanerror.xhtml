@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+
+        <div class="example">
+            <div class="container">
+                <h:form>
+                    <div class="form-group">
+                        <h:messages id="messages" class="error" showDetail="false" p:autoUpdate="true" p:closable="true"  />   
+                    </div>
+                </h:form>
+                <h:form>
+                    <div class="row  well well-sm">
+                        <div class="form-group ">
+
+
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="dshshoibaonvchinha.xhtml?faces-redirect=true" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </h:form>
+                <h:form>
+
+
+                    <div class="row " >
+
+                        <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.dmQuanlydotimagectietWebs}" var="item" paginator="true"  
+                                     rows="10" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="10,20,30">
+
+                        
+                                <f:facet name="header">Thông tin chi tiết</f:facet>  
+ 
+                                <p:column  colspan="4" >   
+                                <div class="well well-lg " style="background: #ccccff">
+                                    <div class="form-group">
+                                        <h:outputLabel id="ht" class="form-control"  value="Họ tên :#{item.hoten}"/>              
+                                        <h:outputLabel id="nv" class="form-control" value="Nhân viên :#{item.idNvChitra}"/>      
+                                    </div>
+
+
+                                </div>
+                                <div class="well well-sm">
+                                    <div class="form-group">
+                                        <span class="input-group-addon" id="basic-addon1" style="width: 100px">Số biên nhận::</span>
+                                        <p:inputText id="fisrtinput"  class="input-sm form-control" value="#{item.sobn}" style="font-size: 30px;height: 35px "   >
+                                            <p:ajax update="sct ht nv" listener="#{chinhamainManagedBean.kiemtragiaodich(item,null)}"/>    
+                                            <f:convertNumber pattern="############"/>
+                                        </p:inputText>  
+                                         <span class="input-group-addon" id="basic-addon1" >Số chứng minh:</span>
+                                            <h:inputText id="sct" class="input-sm" value="#{item.soCtTuythan}" style="height: 50px;font-size: 24px;color: blue;font-weight: bold"  p:autofocus="true" readonly="#{item.dkhoanthanh eq 'F' ? false:true }"  >
+                                          
+                                                <p:ajax update="nv ht ngaycaptkh noicaptkh" listener="#{chinhamainManagedBean.timtheoloaigiayto(item)}"/>
+                             
+                                            </h:inputText>  
+                                           <span class="input-group-addon" id="basic-addon1"  >Ngày cấp:</span>
+                                           <h:inputText  id="ngaycaptkh" value="#{item.ngaycap}" >
+                                               <f:convertDateTime  pattern="dd-MM-yyyy" timeZone="GMT+7"/>
+                                            </h:inputText>
+                                            <span class="input-group-addon" id="basic-addon1"  >Nơi cấp:</span>
+                                            <p:selectOneMenu id="noicaptkh"  value="#{item.idnoicap}" required="false" requiredMessage="Chọn nơi cấp giấy tờ của khách hàng">
+                                            <f:selectItem itemLabel="--Chọn nơi cấp giấy tờ--"/>
+                                            <f:selectItems var="city" value="#{globalManagedBean.cityLists}" itemValue="#{city.idCode}" itemLabel="#{city.cityName}" />	   		
+                                            </p:selectOneMenu>
+                                                <p:commandLink    class="btn btn-primary btn-lg"  ajax="false" value="Cập nhật" action="#{chinhamainManagedBean.rexacnhanthongtinerror(item)}" style="color: white" >
+                                            </p:commandLink>
+                                    </div>
+                                    
+                                
+                                </div >
+                                
+
+
+                            </p:column>
+                                <p:column colspan="8"   >  
+                                   <div class="imageAndText">
+                                       <h:outputLabel id="text"  value="Số biên nhận:#{chinhamainManagedBean.vwDsUploadImagehbWeb.sobn}"/>
+                                       <p:graphicImage id="xembn" styleClass="align-center img-responsive"  value="DisplayImageTemp?id=#{item.filePath}" height="150px"   />
+                                </div>
+                               </p:column>
+
+                        </p:dataTable>      
+
+                    </div>
+
+                </h:form>
+            </div>    
+        </div>
+
+
+    </ui:define>
+</ui:composition> 

@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/default/main.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">    
+  
+    <div class="container">
+        <h:form>
+                <div class="row  well well-sm">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="index.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+           
+
+                    </div>
+ 
+                </div>
+
+                    </h:form>
+                <h:form>
+                <div class="row " >
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <div class="well well-sm" > 
+                       <div class="btn-group">
+                         
+                           <h:commandButton class="btn btn-primary" value="Upload Biên Nhận"  action="#{chinhamainManagedBean.taodoihoibao()}"/>      
+                           <h:commandButton class="btn btn-success" value="Hiện thông tin" action="#{chinhamainManagedBean.showthongtinhoibao()}" >
+                               <p:ajax update="showdata" />
+                           </h:commandButton>
+                           <h:commandButton class="btn btn-primary" value="Đã hoàn thành" action="#{chinhamainManagedBean.showthongtinhbdahoanthanh()}" >
+                               <p:ajax update="showdata" />
+                           </h:commandButton>
+                           
+                      </div>
+
+                    </div>     
+                 </div>
+
+                <div class="row " >
+                  
+                    <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.dmQuanlydotImagetongWebs}" var="item" paginator="true"  
+                             rows="10" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="10,20,30">
+                   
+                     <p:column   >   
+                             <f:facet name="header">Đợt hồi báo</f:facet>     
+                             <h:outputLabel value="#{item.dotbn}"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">Trạng thái</f:facet>     
+                             <h:outputLabel value="#{item.iderror}"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">Số hồ sơ</f:facet>     
+                             <h:outputLabel value="#{item.shs}"/>
+                    </p:column>
+                    <p:column   >   
+                             <f:facet name="header">Nhân viên tạo</f:facet>     
+                             <h:outputLabel value="#{item.markerId}"/>
+                    </p:column>
+                     <p:column   >   
+                             <f:facet name="header">Hội sở</f:facet>     
+                             <h:outputLabel value="#{item.kiemtra}"/>
+                    </p:column>     
+                    <p:column>   
+                           <f:facet name="header"></f:facet>     
+                           <h:commandButton value="Kiểm tra" action="#{chinhamainManagedBean.kiemtrabiennhan(item)}" rendered="#{item.kiemtra=='N'}" />
+                           <h:commandButton value="Xem" action="#{chinhamainManagedBean.kiemtrahoanthanh(item)}" rendered="#{item.kiemtra=='Y'}" />
+                    </p:column>
+                   
+                   
+                </p:dataTable>      
+                       
+    </div>
+                        
+   </h:form>
+     </div>    
+ 
+        
+    </ui:define>
+</ui:composition> 
