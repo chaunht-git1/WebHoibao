@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough" template="/templates/default/mainlogin.xhtml">
+    <ui:define name="content">                           
+ 
+   <div class="container well">
+   
+        <h:messages id="messages" showDetail="true" p:autoUpdate="true"  />
+        <h:form>
+            
+        
+        <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-user" ></span>
+            <h:inputText p:placeholder="Username"  value="#{loginManagerBean.username}" class="form-control"  />
+        </div>
+         
+        <div class="input-group">
+          <span class="input-group-addon glyphicon glyphicon-lock"  ></span>
+           <h:inputSecret p:placeholder="Password"  value="#{loginManagerBean.password}" class="form-control"  />
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" disabled="true"/> Ghi Nhớ</label>
+             <br/>
+             <h:commandLink value="Đổi mật khẩu." disabled="true"/>
+             <br/>
+             <h:commandLink value="Đăng ký." disabled="true"/>
+        </div>
+         <h:commandButton action="#{loginManagerBean.validateUsernamePassword()}" value="Đăng nhập" class="btn btn-primary" styleClass="button-login"/>
+    
+        </h:form>
+  
+   </div>
+ 
+ 
+
+    </ui:define>
+</ui:composition> 
+

@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/default/main.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">    
+
+        <div class="example">
+            <div class="container">
+             
+                <h:form id="chitiet">
+                   <div class="form-group">
+                        <p:messages id="messages" showDetail="true" closable="true">
+                            
+                        </p:messages>
+                    </div>
+                    <div class="row  well well-sm">
+                        <div class="form-group ">
+
+
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="dshshoibaonvchinha.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </h:form>
+                <h:form>
+
+
+                    <div class="row " >
+
+                        <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.dmQuanlydotimagectietWebs}" var="item" paginator="true"  
+                                     rows="10" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="10,20,30">
+
+                            <p:column>   
+                                <f:facet name="header">Thông tin chi tiết</f:facet>  
+                                   
+                                <div class="well well-sm">
+                                    <div class="form-inline">
+
+                                        <h:outputLabel  value="Họ tên:#{item.hoten}"/>              
+                                        -  
+                                        <h:outputLabel  id="sobn" value="Số biên nhận:#{item.sobn}" style="background:  yellow"/>
+                                        -  
+                                        <h:outputLabel   id="mkh" value="Mã khách hàng:#{item.makhachhang}" style="background:  yellow"/>
+                                         -  
+                                         <h:outputLabel   id="dht" value="Hoàn thanh:#{item.dkhoanthanh}" style="background:  yellow"/>
+                                    </div>
+                                 
+                                </div >
+                                <div class="well well-sm">
+                                    <p:graphicImage id="xembn" styleClass="align-center img-responsive"  value="DisplayImageTemp?id=#{item.filePath}" height="150px"   />
+                                </div>
+
+                            </p:column>
+
+                </p:dataTable>      
+                       
+    </div>
+                        
+   </h:form>
+     </div>    
+</div>
+        
+    </ui:define>
+</ui:composition> 

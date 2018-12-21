@@ -102,5 +102,36 @@ public  Customer  timkiemkhachhangcmnd(String socmnd,String valuetring )  throws
         }
     }
 
-    
+  public String createttkh(Customer customer,String sobn) throws SQLException {
+       
+        Connection con = ConnectionProvider.getCon();
+        String kq = null;
+        String userid = SessionBean.getUserId();
+
+        String fnCall = "{?= call KH.PKS_HOIBAO_WEB_2018.TAO_KHACHHANGTEMP_2018(?,?,?,?,?,? )}";
+        try {
+            CallableStatement stm = con.prepareCall(fnCall);
+
+            stm.setQueryTimeout(1800);
+            stm.registerOutParameter(1, oracle.jdbc.OracleTypes.VARCHAR);
+            stm.registerOutParameter(5, oracle.jdbc.OracleTypes.DATE);
+          
+            
+            stm.setString(2, sobn);
+            stm.setString(3, customer.getCustomerCode());
+            stm.setString(4, customer.getIdCardNumber());
+            stm.setDate(5, new java.sql.Date(customer.getDateOfIssueDateValue().getTime()));      
+            stm.setString(6,customer.getPlaceOfIssue());
+            stm.setString(7,userid);
+   
+
+            stm.executeUpdate();
+            kq = stm.getString(1);
+            stm.close();
+            //con.close();
+            return kq;
+        } catch (Exception e) {
+            return kq;
+        }
+    }
 }

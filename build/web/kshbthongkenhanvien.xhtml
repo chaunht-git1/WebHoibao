@@ -1,0 +1,114 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">    
+ 
+    <div class="example">
+    <div class="container">
+    
+        <h:form>
+                <div class="row  well well-sm">
+                    <div class="form-group ">
+                        
+              
+                            <div class="col-xs-12 box">
+                                <h:commandLink id="btnback"
+                                               class="form-control"
+                                               action="index.xhtml" 
+                                               styleClass="btn btn-default"  >
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Trở về
+                                </h:commandLink>
+                            </div>
+           
+
+                    </div>
+ 
+                </div>
+
+                    </h:form>
+                <h:form>
+                <div class="row " >
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <div class="well well-sm" >
+                        <div class="form-group">     
+                            <h:commandButton value="Hiện thông tin" action="#{hoibaoManagedBean.showthongtinnv()}" >
+                               <p:ajax update="showdata" />
+                        </h:commandButton>
+                         </div>
+                    </div>     
+                 </div>
+                    <div class="row">
+                        <div class="well form-group">
+ 
+                    <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{hoibaoManagedBean.listhskiemtranv}" var="item"   >
+
+                        <p:column   >   
+                            <p:panelGrid  columns="3">
+                                <f:facet name="header">
+                                      <h:outputText value="#{item.hoten}" />
+                                  
+                                </f:facet>
+
+                                <h:outputText value="Chi nhánh:" />
+                                <h:outputText value="#{item.tenchinhanh}" />
+                                <h:outputLabel value="" />
+
+                                <h:outputText value="Tổng hồ sơ được giao:" />
+                                <h:outputText value="#{item.shs}" />
+                                <h:commandButton value="Xem" />
+
+                                <h:outputText value="Hồ sơ đã chi trả:" />
+                                <h:outputText value="#{item.dachitra}" />
+                                <h:commandButton value="Xem" />
+                                <h:outputText value="Hồ sơ chưa chi trả:" />
+                                <h:outputText value="#{item.chuachitra}" />
+                                <h:commandButton value="Xem" action="#{hoibaoManagedBean.chuyentrangchitiet('C')}" />
+                                <h:outputText value="Money Gram Đợt 1:" style="color: red"/>
+                                <h:outputText value="#{item.slmoneygramdot1}" />
+                                <h:commandButton value="Xem" action="#{hoibaoManagedBean.chuyentrangchitiet('HSDOT1')}" />
+                                <h:outputText value="Money Gram Đợt 3:" style="color: red"/>
+                                <h:outputText value="#{item.slmoneygram}" />
+                                <h:commandButton value="Xem" action="#{hoibaoManagedBean.chuyentrangchitiet('HSDOT3')}" />
+                                <h:outputText value="Hồ sơ có hình:" />
+                                <h:outputText value="#{item.daquyetbn}" />
+                                <h:commandButton value="Xem" />
+                                <h:outputText  value="Hồ sơ đã chi trả chưa biên nhận:" />
+                                <h:outputText class="blink_me noidung_red" value="#{item.dachitrachuabn}" />
+                                <h:commandButton value="Xem" action="#{hoibaoManagedBean.chuyentrangchitiet('F')}" />
+                                <h:outputText value="Hồ sơ đã xác nhận mobile:" />
+                                <h:outputText value="#{item.soluonghbmobile}" />
+                                <h:commandButton value="Xem" action="#{hoibaoManagedBean.chuyentrangchitiet('HSXNMOBILE')}" />
+                                 <h:outputText value="Hồ sơ xác minh:" />
+                                 <h:outputText value="#{item.shsxacminh}" />
+                                 <h:commandButton value="Xem" />
+                                 <h:outputText value="Hồ sơ gửi xác minh về hội sở:" />
+                                 <h:outputText value="#{item.shsguixm}" />
+                                 <h:commandButton value="Xem" action="#{hoibaoManagedBean.chuyentrangchitiet('B')}" />
+                                 <h:outputText value="Hồ sơ tồn:" />
+                                 <h:outputText value="#{item.shstondong}" />
+                                 <h:commandButton value="Xem" />
+                                 <h:outputText value="Chi nhà hoàn hoàn thành:" />
+                                 <h:outputText value="#{item.chinhahoanthanh}" />
+                                 <h:commandButton value="Xem" />
+                                 <h:outputText value="Hoàn thành:" />
+                                 <h:outputText value="#{item.hoanthanh}" />
+                                 
+                                 
+                           </p:panelGrid>
+                        </p:column>
+ 
+                    </p:dataTable>      
+                    </div>                           
+                    </div>
+  
+                        
+   </h:form>
+     </div>    
+</div>
+        
+    </ui:define>
+</ui:composition> 

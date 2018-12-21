@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough" 
+                xmlns:jsf="http://xmlns.jcp.org/jsf" template="/templates/default/main.xhtml">
+    <ui:define name="content">  
+                
+        <h:form>
+            <div>
+                  <p:messages   showDetail="true" autoUpdate="true" closable="true" />
+            </div>         
+            <div class="row">
+               <div class="wellcustom">
+                     <span>
+                       <h:graphicImage value="resources/images/logout-icon.png"  width="40px" height="40px" />  
+                     </span> 
+                   <h:commandLink    value="Thoát "   action="#{loginManagerBean.logout()}" > 
+                   </h:commandLink>
+
+                </div>
+                
+                 <div class="wellcustom">
+                     <span>
+                       <h:graphicImage value="resources/images/qrcode.png"  width="40px" height="40px" />  
+                     </span> 
+                      <h:commandLink    value="Biên nhận trong ngày "   action="#{hoibaoManagedBean.chuyentrangdshoibao('C')}" > 
+                      </h:commandLink>
+
+                </div>
+       
+                <div class="wellcustom">
+                     <span>
+                       <h:graphicImage value="resources/images/ireport.png"   width="40px" height="40px" />  
+                     </span> 
+                      <h:commandLink   value="Báo cáo cá nhân"    action="#{hoibaoManagedBean.chuyentrangkshoibaochinhanh()}"  >  
+                      </h:commandLink>
+                </div>
+             
+             
+                <div class="wellcustom">
+                    <span>
+                       <h:graphicImage value="resources/images/kiemtra.png"  width="40px" height="40px" />  
+                    </span> 
+                    <h:commandLink   value="Scan Biên Nhận"   action="#{chinhamainManagedBean.chuyentrangdshshoibaonvchinha()}" > 
+                    </h:commandLink>
+                    
+                </div>
+                
+                    <div class="wellcustom">
+                    <span>
+                       <h:graphicImage value="resources/images/kiemtra.png"  width="40px" height="40px" />  
+                    </span> 
+                        <h:commandLink   value="Cập nhật khách hàng"  action="chuanhoakh?faces-redirect=true"    /> 
+                    </div>
+
+       
+            </div>
+ 
+        </h:form>
+        
+ 
+    </ui:define>
+</ui:composition> 
+

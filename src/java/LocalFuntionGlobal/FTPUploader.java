@@ -59,7 +59,7 @@ public void uploadFile(String localFileFullName, String fileName, String hostDir
 		FTPUploader ftpUploader = new FTPUploader(hostname, userftp, passftp);
 		//FTP server path is relative. So if FTP account HOME directory is "/home/pankaj/public_html/" and you need to upload 
 		// files to "/home/pankaj/public_html/wp-content/uploads/image2/", you should pass directory parameter as "/wp-content/uploads/image2/"
-		ftpUploader.uploadFile("E:\\Source\\SourcePublic\\WebHoibao\\build\\web\\resources\\tempimage\\12260078.jpg", "12260078.jpg", "/");
+		ftpUploader.uploadFile("E:\\Source\\SourcePublic\\WebHoibao\\build\\web\\resources\\tempimage\\errorre.jpg", "errorre.jpg", "/");
 		ftpUploader.disconnect();
 		System.out.println("Done");
 	}

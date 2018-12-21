@@ -319,27 +319,60 @@ public class ChinhamainManagedBean  implements Serializable {
     }
     
   public void  rexacnhanthongtinerror(VwDmQuanlydotimagectietWeb dmQuanlydotimagectietWeb) throws SQLException {
-       
+        
+        String makhachhang=null;
+        makhachhang=dmQuanlydotimagectietWeb.getMakhachhang();
         String khoa=dmQuanlydotimagectietWeb.getKhoa().toString();
         String soct=dmQuanlydotimagectietWeb.getSoCtTuythan().toString();
         String sobn=dmQuanlydotimagectietWeb.getSobn().toString();
         String filepath=dmQuanlydotimagectietWeb.getFilePath();
+        Customer customer= new Customer();
+        KhachhangDao khachhangDao= new KhachhangDao();
+        if (makhachhang==null)
+        {
+          makhachhang="NOVALUE";
  
-        String makhachhang=dmQuanlydotimagectietWeb.getMakhachhang();
-        if (makhachhang.equalsIgnoreCase("NOVALUE") )
+        }  
+        else{
+            
+           customer=khachhangDao.timkiemkhachhangcmnd("SOCHUNGMINH",dmQuanlydotimagectietWeb.getSoCtTuythan() );
+           
+            if (customer.getCustomerCode()==null){
+            
+               makhachhang="NOVALUE";
+               
+            }
+            else{
+
+               makhachhang=customer.getCustomerCode();
+             }
+           
+           
+        }
+ 
+        
+        if (makhachhang.equalsIgnoreCase("NOVALUE") )  
          {
              //Tao khach hang moi
-                // Tim lai bang so CMND .    
-             ApiKhachHangDao apiKhachHangDao= new ApiKhachHangDao();
+                // Tim lai bang so CMND .   
+             
             
+            customer.setFullname(dmQuanlydotimagectietWeb.getHoten());
+            customer.setIdCardNumber(dmQuanlydotimagectietWeb.getSoCtTuythan());
+            customer.setIdCardTypeCode(dmQuanlydotimagectietWeb.getIdCtTuythan());
+            customer.setDateOfIssueDateValue(dmQuanlydotimagectietWeb.getNgaycap());
+            customer.setPlaceOfIssue(dmQuanlydotimagectietWeb.getIdnoicap());
+
+            makhachhang=khachhangDao.createttkh(customer, sobn);
  
          }
+        
         DmquanlyimageDao dao=new DmquanlyimageDao();
         Hamimage hamimage= new Hamimage();
         Boolean ketqua=hamimage.uploadImageFtp(filepath, sobn);
         if (ketqua) 
         {
-          String kq=dao.updatebiennhanerror(khoa,dmQuanlydotimagectietWeb.getIdCtTuythan(), soct,sobn,"Y",dmQuanlydotimagectietWeb.getNgaycap(),dmQuanlydotimagectietWeb.getMakhachhang(),dmQuanlydotimagectietWeb.getIdnoicap());
+          String kq=dao.updatebiennhanerror(khoa,dmQuanlydotimagectietWeb.getIdCtTuythan(), soct,sobn,"Y",dmQuanlydotimagectietWeb.getNgaycap(),makhachhang,dmQuanlydotimagectietWeb.getIdnoicap());
           if (kq.equalsIgnoreCase("T"))  
         {    
      
@@ -371,14 +404,44 @@ public class ChinhamainManagedBean  implements Serializable {
     
        // Ma khach hang bi trong thi se tim trong bang khach hang . Neu chua co se tao khach hang moi .
         String makhachhang=dmQuanlydotimagectietWeb.getMakhachhang();
+        String sobn=dmQuanlydotimagectietWeb.getSobn().toString();
         VwDmQuanlydotimagectietWeb tclass=new VwDmQuanlydotimagectietWeb();
         tclass  =dmQuanlydotimagectietWeb;     
-        
-        if (makhachhang.equalsIgnoreCase("NOVALUE"))
+        Customer customer= new Customer();
+        KhachhangDao khachhangDao= new KhachhangDao();
+        if (makhachhang==null || makhachhang.equalsIgnoreCase("NOVALUE"))
         {
-             
-             
+           makhachhang="NOVALUE";
         }
+        else{
+            
+           customer=khachhangDao.timkiemkhachhangcmnd("SOCHUNGMINH",dmQuanlydotimagectietWeb.getSoCtTuythan() );
+         
+         
+            if (customer==null){
+
+                   makhachhang="NOVALUE";
+            }
+            else{
+
+                   makhachhang=customer.getCustomerCode();
+            }
+            }
+
+        if (makhachhang.equalsIgnoreCase("NOVALUE") )  
+         {
+             //Tao khach hang moi
+                // Tim lai bang so CMND .   
+            
+            customer.setFullname(dmQuanlydotimagectietWeb.getHoten());
+            customer.setIdCardNumber(dmQuanlydotimagectietWeb.getSoCtTuythan());
+            customer.setIdCardTypeCode(dmQuanlydotimagectietWeb.getIdCtTuythan());
+            customer.setDateOfIssueDateValue(dmQuanlydotimagectietWeb.getNgaycap());
+            customer.setPlaceOfIssue(dmQuanlydotimagectietWeb.getIdnoicap());
+            makhachhang=khachhangDao.createttkh(customer, sobn);
+ 
+         }
+        
         tclass.setMakhachhang(makhachhang);
         DmquanlyimageDao dao=new DmquanlyimageDao();
         String kq=dao.updatettkhtodate(tclass, "Y");

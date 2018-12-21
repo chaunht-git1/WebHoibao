@@ -6,17 +6,20 @@
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/chuanhoakh.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaohoanthanh.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/HoibaoManagedBean.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinharexacnhanerror.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/ImageDao.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/DmquanlyimageDao.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Provider.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/ChuanhoakhManagedBean.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/KhachhangDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/ChinhamainManagedBean.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ApiFunction/ApiKhachHangDao.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/capnhatttkhachhang.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinha.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ServletBean/DisplayImage.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinhakiemtra.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/XacminhDAO.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/FTPUploader.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/HamUserAll.java</file>
         </group>
     </open-files>
