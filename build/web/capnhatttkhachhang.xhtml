@@ -44,9 +44,9 @@
                           <p:column colspan="4">
                           <p:panelGrid columns="2">
                               <p:outputLabel value="Ngày cấp:"  />
-                              <p:inputText id="ngaycaptkh" value="#{chuanhoakhManagedBean.khachhangmodel.dateOfIssueDateValue}"  >
-                                               <f:convertDateTime pattern="dd/MM/yyyy"/>
-                              </p:inputText>
+                             
+                                <p:calendar id="ngaycaptkh" navigator="true" pattern="dd-MM-yyyy" mask="true" placeholder="Ngày cấp"  value="#{chuanhoakhManagedBean.khachhangmodel.dateOfIssueDateValue}" yearRange="-100:+0" required="false" requiredMessage="Ngày cấp CMND của khách hàng trống"/>
+                                  
                                <h:outputLabel value="Nơi cấp:"  />
                                  <p:selectOneMenu id="noicaptkh"   value="#{chuanhoakhManagedBean.khachhangmodel.placeOfIssue}" required="false" requiredMessage="Chọn nơi cấp giấy tờ của khách hàng">
                                     <f:selectItem itemLabel="--Chọn nơi cấp giấy tờ--"/>
@@ -59,9 +59,9 @@
                                     <f:selectItem itemValue="1" itemLabel="Nữ" />     
                                 </p:selectOneMenu>
                                   <h:outputLabel value="Ngày sinh:"  />
-                                  <p:inputText id="ngaysinh" value="#{chuanhoakhManagedBean.khachhangmodel.dateOfBirthDateValue}" required="true" >
-                                               <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                  </p:inputText>
+                               
+                                       <p:calendar id="ngaysinh" navigator="true" pattern="dd-MM-yyyy" mask="true" placeholder="Ngày cấp" value="#{chuanhoakhManagedBean.khachhangmodel.dateOfBirthDateValue}" yearRange="-100:+0" required="false" requiredMessage="Ngày cấp CMND của khách hàng trống"/>
+                                  
             
                                     <h:outputLabel value="Nghề nghiệp:"  />
                                     <h:selectOneMenu id="tenDoitac" class="dropdown input-sm" style="min-width: 300px"  value="#{chuanhoakhManagedBean.khachhangmodel.jobCode}" required="false" requiredMessage="Chọn Nghề Nghiệp"   >

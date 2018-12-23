@@ -2,18 +2,13 @@
 package DatabaseDao;
 
 import ConnectBean.ConnectionProvider;
-import EntitiesBean.VwDmQuanlydotimagectietWeb;
 import Global.SessionBean;
-import LocalFuntionGlobal.HamUserAll;
 import LocalModel.Customer;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
  
 public class KhachhangDao {
@@ -44,7 +39,7 @@ public  Customer  timkiemkhachhangcmnd(String socmnd,String valuetring )  throws
                 } catch (Exception e) {
                   String abc=null;   
                 }
-                dataClass.setIdCardNumber(rs.getString("SOCHUNGMINH"));
+                 dataClass.setIdCardNumber(rs.getString("SOCHUNGMINH"));
              
                 try {
                     dataClass.setIdCardTypeCode("001");
@@ -71,7 +66,7 @@ public  Customer  timkiemkhachhangcmnd(String socmnd,String valuetring )  throws
         String kq = null;
         String userid = SessionBean.getUserId();
 
-        String fnCall = "{?= call KH.PKS_HOIBAO_WEB_2018.CAPNHAT_KHACHHANG_2018(?,?,?,?,?,?,?,?,?,?,?)}";
+        String fnCall = "{?= call KH.PKS_HOIBAO_WEB_2018.CAPNHAT_KHACHHANG_2018(?,?,?,?,?,?,?,?,?,?,?,?)}";
         try {
             CallableStatement stm = con.prepareCall(fnCall);
 
@@ -91,7 +86,7 @@ public  Customer  timkiemkhachhangcmnd(String socmnd,String valuetring )  throws
             stm.setString(10, customer.getFullname());
             stm.setString(11, customer.getPhone());
             stm.setString(12, customer.getAddress());
-
+            stm.setString(13, userid);
             stm.executeUpdate();
             kq = stm.getString(1);
             stm.close();
@@ -129,7 +124,7 @@ public  Customer  timkiemkhachhangcmnd(String socmnd,String valuetring )  throws
             kq = stm.getString(1);
             stm.close();
             //con.close();
-            return kq;
+            return "T";
         } catch (Exception e) {
             return kq;
         }

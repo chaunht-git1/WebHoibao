@@ -39,6 +39,8 @@ public class NhanvienDao {
             dataClass.setHomebranch(rs.getString("HOME_BRANCH"));
  
         }
+        
+        
 
         pstm.close();
 

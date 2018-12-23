@@ -55,52 +55,56 @@ public class ChuanhoakhManagedBean implements Serializable  {
         
     }
     
-      public String timtheoloaigiayto(String makh,KhachhangchuanhoaModel km) {
+     public  void  taokh( ){
+         
+         KhachhangDao khachhangDao= new KhachhangDao();
+         Customer customer=new Customer();
+         customer.setIdCardNumber("999888777666557");
+         customer.setIdCardTypeCode("001");
+         customer.setDateOfIssueDateValue(new Date());
+        try {
+            String makhachhang = khachhangDao.createttkh(customer, "17821356");
+        } catch (SQLException ex) {
+            Logger.getLogger(ChuanhoakhManagedBean.class.getName()).log(Level.SEVERE, "taokh", ex);
+        }
+        
+    }
+    
+      public String timtheoloaigiayto(String makh,KhachhangchuanhoaModel km) throws SQLException {
          // Lay thong tin khach hang . 
           khachhangchuanhoaModel=new KhachhangchuanhoaModel();
           khachhangchuanhoaModel=km;
-          ApiKhachHangDao apiKhachHangDao= new ApiKhachHangDao();
+          KhachhangDao khachhangDao= new KhachhangDao();
           khachhangmodel= new Customer();
-          listkh=apiKhachHangDao.getListCustomerMaKH(makh);
-          if (listkh == null)
-          {
+          String makhachhang=null;
+    
               if(km.getIdCardNumber() != null)
               {
-                 listkh=apiKhachHangDao.getListCustomerSoCMND(km.getIdCardNumber()); 
-                 if (listkh.size()>0){
-                      khachhangmodel=listkh.get(0);
-                      phoneList= new ArrayList<>();
-                      phoneList= Arrays.asList(khachhangmodel.getPhones()); 
-                      khachhangmodel.setPhone(km.getReceiverPhone());
-                      khachhangmodel.setAddress(km.getReceiverAddress());
-                      khachhangmodel.setCityId(km.getCityId());
-                      khachhangmodel.setDistrictId(km.getDistrictId());
+                  khachhangmodel=khachhangDao.timkiemkhachhangcmnd("SOCHUNGMINH",km.getIdCardNumber());
+                  if (khachhangmodel.getCustomerCode()==null){
+                      
+                      khachhangmodel.setFullname(km.getReceiverName());
+                      khachhangmodel.setIdCardNumber(km.getIdCardNumber());
+                      khachhangmodel.setIdCardTypeCode(km.getIdCardTypeCode());
+                      //khachhangmodel.setDateOfIssueDateValue(km.get);
+                      //khachhangmodel.setPlaceOfIssue(km.get);
+                      makhachhang = khachhangDao.createttkh(khachhangmodel, km.getReceiptCode());
+                      
                       return "capnhatttkhachhang"+ "?faces-redirect=true";
-                 }
-                 else{
-                      khachhangmodel=this.taokhachhangmoi(km);
+                  }
+                  else{
                       
-                      
-                 }
+                      return "capnhatttkhachhang"+ "?faces-redirect=true";
+                  }
+               
               }
               else{
                   
-                      return "capnhatttkhachhang"+ "?faces-redirect=true";  
+                  return null;
                   
               }
-          }
-          else{
-                      khachhangmodel=listkh.get(0);
-                      phoneList= new ArrayList<>();
-                      phoneList= Arrays.asList(khachhangmodel.getPhones()); 
-                      khachhangmodel.setPhone(km.getReceiverPhone());
-                      khachhangmodel.setAddress(km.getReceiverAddress());
-                      khachhangmodel.setCityId(km.getCityId());
-                      khachhangmodel.setDistrictId(km.getDistrictId());
-                      return "capnhatttkhachhang"+ "?faces-redirect=true";    
-          }
-  
-     return "capnhatttkhachhang"+ "?faces-redirect=true";
+             
+      
  
     }
       
@@ -110,9 +114,10 @@ public class ChuanhoakhManagedBean implements Serializable  {
           customertemp=customer;
           DateFormat dateFormat;
           KhachhangDao khachhangDao= new KhachhangDao();
+          String kqgd=null;
         try {
             
-            String kqgd=khachhangDao.updatettkh(customer, userid);    
+              kqgd=khachhangDao.updatettkh(customer, userid);    
                     
          } catch (SQLException ex) {
             Logger.getLogger(ChuanhoakhManagedBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,18 +125,13 @@ public class ChuanhoakhManagedBean implements Serializable  {
         
   
         try {
-          List<String> list=new ArrayList<>();
-          list.add(customer.getPhone().toString());
-          String[] kqdt = list.toArray(new String[0]);
-           customertemp.setPhones(kqdt);
-            ApiKhachHangDao apiKhachHangDao= new ApiKhachHangDao();
-            String kq=apiKhachHangDao.updatekhachhang(customertemp);
-          if(!kq.equalsIgnoreCase("F"))
+        
+          if(!kqgd.equalsIgnoreCase("F"))
           {   
               XacminhDAO xdao= new XacminhDAO();
               // Cap nhat giao dich .
-              String kqgd=xdao.updateTrangthaigd(khachhangchuanhoaModel.getReceiptCode(), 3);
-              if (kqgd.equalsIgnoreCase("T"))
+              String kq=xdao.updateTrangthaigd(khachhangchuanhoaModel.getReceiptCode(), 3);
+              if (kq.equalsIgnoreCase("T"))
               {
                  this.dskhachhangchuachuan(userid);
                  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cập nhật  thành công", ""));
@@ -145,9 +145,6 @@ public class ChuanhoakhManagedBean implements Serializable  {
               
           }
         } catch (SQLException ex) {
-            Logger.getLogger(ChuanhoakhManagedBean.class.getName()).log(Level.SEVERE, null, ex);
-             return null;
-        } catch (IOException ex) {
             Logger.getLogger(ChuanhoakhManagedBean.class.getName()).log(Level.SEVERE, null, ex);
              return null;
         }

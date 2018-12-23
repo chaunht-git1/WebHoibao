@@ -32,20 +32,20 @@ public interface Provider {
  
     
 //    String URLAPI="http://10.11.51.12:8899/";
-//    String URLAPIJAVA="http://10.11.51.27/ApiServerJava/";
-//    String LINKAPIKHACHHANGBASIC="http://10.11.51.12:6778/";
+//      String URLAPIJAVA="http://10.11.51.27/ApiServerJava/";
+//      String LINKAPIKHACHHANGBASIC="http://10.11.51.12:6778/";
 //    
     
     // Fpt.
 //    String hostname="10.11.51.12";
 //    String userftp="chaunht";
 //    String passftp="123456";
-// 
+ 
     
 //     // Fpt.
     String hostname="10.11.51.17";
     String userftp="ftpuploadimage";
     String passftp="damtc@ftp";
-    
+//    
 }
  

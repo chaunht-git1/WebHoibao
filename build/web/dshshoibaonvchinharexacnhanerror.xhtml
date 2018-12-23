@@ -49,6 +49,7 @@
                                 <p:column  colspan="4" >   
                                 <div class="well well-lg " style="background: #ccccff">
                                     <div class="form-group">
+                                        <h:outputLabel id="makh" class="form-control"  value="Mã khách hàng:#{item.makhachhang}"/> 
                                         <h:outputLabel id="ht" class="form-control"  value="Họ tên :#{item.hoten}"/>              
                                         <h:outputLabel id="nv" class="form-control" value="Nhân viên :#{item.idNvChitra}"/>      
                                     </div>
@@ -59,13 +60,13 @@
                                     <div class="form-group">
                                         <span class="input-group-addon" id="basic-addon1" style="width: 100px">Số biên nhận::</span>
                                         <p:inputText id="fisrtinput"  class="input-sm form-control" value="#{item.sobn}" style="font-size: 30px;height: 35px "   >
-                                            <p:ajax update="sct ht nv" listener="#{chinhamainManagedBean.kiemtragiaodich(item,null)}"/>    
+                                            <p:ajax update="sct ht nv  ngaycaptkh noicaptkh makh" listener="#{chinhamainManagedBean.kiemtragiaodich(item,null)}"/>    
                                             <f:convertNumber pattern="############"/>
                                         </p:inputText>  
                                          <span class="input-group-addon" id="basic-addon1" >Số chứng minh:</span>
                                             <h:inputText id="sct" class="input-sm" value="#{item.soCtTuythan}" style="height: 50px;font-size: 24px;color: blue;font-weight: bold"  p:autofocus="true" readonly="#{item.dkhoanthanh eq 'F' ? false:true }"  >
                                           
-                                                <p:ajax update="nv ht ngaycaptkh noicaptkh" listener="#{chinhamainManagedBean.timtheoloaigiayto(item)}"/>
+                                                <p:ajax update="nv ht ngaycaptkh noicaptkh makh" listener="#{chinhamainManagedBean.timtheoloaigiayto(item)}"/>
                              
                                             </h:inputText>  
                                            <span class="input-group-addon" id="basic-addon1"  >Ngày cấp:</span>

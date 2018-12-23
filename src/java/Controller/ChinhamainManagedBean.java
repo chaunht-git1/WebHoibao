@@ -68,8 +68,8 @@ public class ChinhamainManagedBean  implements Serializable {
     
       String device=SessionBean.getDeviceName();
       String userid=SessionBean.getUserId();
-      if (device.equalsIgnoreCase("Desktop")  )
-      {
+    //  if (device.equalsIgnoreCase("Desktop")  )
+      //{
           ishoibaofile=false;
           DateFormat df = new SimpleDateFormat("MMddyyyyHHmm");
           Date today = Calendar.getInstance().getTime();        
@@ -77,14 +77,15 @@ public class ChinhamainManagedBean  implements Serializable {
           fileno=0;
           return "dshshoibaonvchinhact"+ "?faces-redirect=true";
           
-      }
-      else{
+     // }
+     /* else{
       
            FacesMessage message = new FacesMessage("Đăng nhập trên máy tính mới sử dụng được chức năng này" ,"" );
            FacesContext.getCurrentInstance().addMessage(null, message);
            return null;
  
       }
+     */
     
 }
  
@@ -106,9 +107,11 @@ public class ChinhamainManagedBean  implements Serializable {
          {
              iderror="N";
              pathfileimage=webContentRoot ;
-             filename=maso+ext;
-             ktkq =hamUserAll.storeImageServer(pathfileimage, filename, filein);
+          
+             
              String sobiennhan=giaodichDao.timkiemsobn("IDCODE",chinhanh+maso);
+             filename=sobiennhan+ext;
+             ktkq =hamUserAll.storeImageServer(pathfileimage, filename, filein);
              Hamimage hamimage= new Hamimage();
              Boolean kqtest=null;
              if (ktkq)
@@ -315,6 +318,14 @@ public class ChinhamainManagedBean  implements Serializable {
               tclass.setMakhachhang(khachhangmodel.getCustomerCode());
               dmQuanlydotimagectietWebs.set(stt, tclass);
            }  
+           else{
+              tclass.setNgaycap(null);
+              tclass.setIdnoicap(null);
+              tclass.setMakhachhang("NOVALUE");
+              dmQuanlydotimagectietWebs.set(stt, tclass);
+               
+               
+           }
  
     }
     
