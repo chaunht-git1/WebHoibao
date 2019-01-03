@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Upload biên nhận </title>
+    </h:head>
+ 
+    <ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                template="/templates/default/main.xhtml">
+    <ui:define name="content">  
+        
+        <h:form enctype="multipart/form-data">
+
+        <div id="top">
+  
+                   <div class="row " >
+                    <div class="well well-sm" >  
+                        <div class="form-group">
+                            <h:commandLink class="btn btn-primary btn-lg" id="btnback"  value="Trở về" action="dshshoibaonvchinha.xhtml?faces-redirect=true"/> 
+                        </div>
+                        <div class="form-group">
+                            <p:fileUpload id="hoibaofile"  fileUploadListener="#{chinhamainManagedBean.handleFileUploadMobile}"   mode="advanced" allowTypes="/(\.|\/)(jpe?g)$/" dragDropSupport="false"
+                               multiple="true" update="messages" sizeLimit="180000" fileLimit="100"
+                               disabled="#{chinhamainManagedBean.ishoibaofile}" fileLimitMessage="File quá lớn" style="font-size: 35px">
+                           </p:fileUpload>
+                           <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                        </div>
+                         <div class="form-group">
+                             <h:commandLink class="btn btn-primary btn-lg" id="btnkiemtra"  value="Kiem Tra" action="#{chinhamainManagedBean.showbiennhanuploaderror()}" /> 
+                        </div>
+                        <p:dataTable id="showdata" rowIndexVar="rowIndex" value="#{chinhamainManagedBean.bbiennhantempTodays}" var="item" paginator="true"  
+                                     rows="10" paginatorPosition="top"  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="10,20,30">
+                            <p:column>
+                                  <div class="well well-sm">
+                                      <div class="form-group">
+                                          <div class="input-group">
+                                              <h:outputLabel value="So bien nhan"/>
+                                            <h:inputText id="sbn" class="input-group-lg" value="#{item.sobn}"    p:autofocus="true"   />
+                                            <h:commandButton id="btnlenbaocao" class="btn-sm btn-primary" value="Luu"   action="#{chinhamainManagedBean.rexactinerrormobile(item)}" ></h:commandButton> 
+                                        
+                                          </div> 
+                                         
+                                      </div>
+                                      <div class="form-group">
+                                      <p:graphicImage id="xembn" styleClass="align-center img-responsive"  value="DisplayImageTemp?id=#{item.filepath}" height="150px"   />
+                                      </div>  
+                                  </div> 
+                            </p:column>  
+                         
+                         </p:dataTable>  
+                    </div>     
+                 </div>
+                </div>
+            
+            
+  </h:form>
+        <p:dialog id="myDialogId"   widgetVar="myDialogVar"   >
+            
+        </p:dialog>
+ 
+ </ui:define>
+</ui:composition> 
+</html>
+
+

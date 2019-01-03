@@ -46,6 +46,6 @@ public interface Provider {
     String hostname="10.11.51.17";
     String userftp="ftpuploadimage";
     String passftp="damtc@ftp";
-//    
+    
 }
  

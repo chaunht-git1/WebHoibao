@@ -33,8 +33,10 @@ import org.primefaces.model.CroppedImage;
 import org.primefaces.model.UploadedFile;
 import DatabaseDao.DmquanlyimageDao;
 import DatabaseDao.GiaodichDao;
+import DatabaseDao.ImageDao;
 import DatabaseDao.KhachhangDao;
 import LocalFuntionGlobal.Hamimage;
+import LocalModel.HBbiennhantempToday;
 
  
 @Named(value = "chinhamainManagedBean")
@@ -60,6 +62,7 @@ public class ChinhamainManagedBean  implements Serializable {
       private  List<VwDmQuanlydotImagetongWeb> dmQuanlydotImagetongWebs = new ArrayList<>();
       private  List<VwDmQuanlydotimagectietWeb> dmQuanlydotimagectietWebs = new ArrayList<>();
       private  List<VwDsUploadImagehbWeb> dsUploadImagehbWebs = new ArrayList<>();
+      private  List<HBbiennhantempToday> bbiennhantempTodays = new ArrayList<>();
       private  VwDsUploadImagehbWeb vwDsUploadImagehbWeb = new VwDsUploadImagehbWeb();
        
     
@@ -188,7 +191,60 @@ public class ChinhamainManagedBean  implements Serializable {
         return "dshshoibaonvchinha" + "?faces-redirect=true";
       
       
+    } 
+
+ public String handleFileUploadMobile(FileUploadEvent event) throws IOException, ClassNotFoundException, SQLException, NotFoundException, ChecksumException, FormatException {
+        
+        String chinhanh=SessionBean.getChinhanhId();
+        UploadedFile filein=event.getFile();  
+        String filename = filein.getFileName();
+        String ext = filename.substring(filename.lastIndexOf('.'), filename.length());
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext(); 
+        String webContentRoot = ec.getRealPath("/resources/tempimage/");
+        String pathfileimage =null;
+        String maso=HamUserAll.scanBarcode(filein.getInputstream(),ext);
+        HamUserAll hamUserAll= new HamUserAll();
+        String iderror=null;
+        Boolean ktkq ;
+        GiaodichDao giaodichDao= new GiaodichDao();
+        if (maso != null && !maso.equalsIgnoreCase("reader error")) {
+             iderror = "N";
+             pathfileimage = webContentRoot;
+
+             String sobiennhan = giaodichDao.timkiemsobn("IDCODE", chinhanh + maso);
+             filename = sobiennhan + ext;
+             ktkq = hamUserAll.storeImageServer(pathfileimage, filename, filein);
+             Hamimage hamimage = new Hamimage();
+             Boolean kqtest = null;
+             if (ktkq) {
+                 kqtest = hamimage.uploadImageFtp(pathfileimage + "/" + filename, sobiennhan);
+             }
+             if (kqtest) {
+                 Boolean ketqua = this.capnhatthongtinuploadmobile(sobiennhan);
+             }
+
+         }
+        else{
+             maso = filename.substring(1,filename.lastIndexOf('.') );      
+             iderror="Y";
+             pathfileimage=webContentRoot ;
+             filename=filename;
+             Boolean kqtest = null;
+             ktkq =hamUserAll.storeImageServer(pathfileimage, filename, filein);
+             Hamimage hamimage = new Hamimage();
+             if (ktkq) {
+                 Boolean ketqua = this.uploadmobileerror(pathfileimage + "/" + filename,maso);
+             }
+
+            
+        }          
+     
+  
+        return null;
+      
+      
     }  
+     
     
  public boolean capnhatthongtinupload( String maso,String iderror,String filepath,String dotbnhan ) throws IOException, ClassNotFoundException, SQLException   {
     
@@ -199,6 +255,29 @@ public class ChinhamainManagedBean  implements Serializable {
      return true;
  
     }
+ 
+     
+ public boolean capnhatthongtinuploadmobile( String maso ) throws IOException, ClassNotFoundException, SQLException   {
+    
+     String userid=SessionBean.getUserId();
+     HamUserAll hamUserAll= new HamUserAll();
+     String kq=hamUserAll.uploadbnoutmobile(maso, userid);
+    
+     return true;
+ 
+}
+ 
+  public boolean uploadmobileerror( String filepath,String maso ) throws IOException, ClassNotFoundException, SQLException   {
+    
+     String userid=SessionBean.getUserId();
+     HamUserAll hamUserAll= new HamUserAll();
+     String kq=hamUserAll.uploadbnoutmobileerror(maso, userid,filepath);
+    
+     return true;
+ 
+} 
+ 
+ 
  
   public void showthongtinhoibao(){
 
@@ -450,7 +529,7 @@ public class ChinhamainManagedBean  implements Serializable {
             customer.setDateOfIssueDateValue(dmQuanlydotimagectietWeb.getNgaycap());
             customer.setPlaceOfIssue(dmQuanlydotimagectietWeb.getIdnoicap());
             makhachhang=khachhangDao.createttkh(customer, sobn);
- 
+       
          }
         
         tclass.setMakhachhang(makhachhang);
@@ -487,7 +566,31 @@ public class ChinhamainManagedBean  implements Serializable {
     
 }      
    
-
+ public void showbiennhanuploaderror(){
+      String userid =SessionBean.getUserId();
+      GiaodichDao giaodichDao= new GiaodichDao();
+      this.showbutxacnhan=true;
+      bbiennhantempTodays=new ArrayList<>();
+      bbiennhantempTodays=giaodichDao.dshosoerrornhanvien(userid);
+}    
+ 
+  public void  rexactinerrormobile(HBbiennhantempToday bbiennhantempToday) throws SQLException, IOException, ClassNotFoundException {
+        
+        String sobiennhan=bbiennhantempToday.getSobn();
+        String userid=bbiennhantempToday.getMatkerid();
+        String filename=bbiennhantempToday.getFilepath();
+        Hamimage hamimage= new Hamimage();  
+        Boolean kqtest = hamimage.uploadImageFtp(filename, sobiennhan);
+   
+             if (kqtest) {
+                 Boolean ketqua = this.capnhatthongtinuploadmobile(sobiennhan);
+             }
+             bbiennhantempTodays.remove(bbiennhantempToday);
+         
+ 
+   } 
+   
+ 
     public String getLoaitkdulieu() {
         return loaitkdulieu;
     }
@@ -630,6 +733,14 @@ public class ChinhamainManagedBean  implements Serializable {
 
     public void setVwDsUploadImagehbWeb(VwDsUploadImagehbWeb vwDsUploadImagehbWeb) {
         this.vwDsUploadImagehbWeb = vwDsUploadImagehbWeb;
+    }
+
+    public List<HBbiennhantempToday> getBbiennhantempTodays() {
+        return bbiennhantempTodays;
+    }
+
+    public void setBbiennhantempTodays(List<HBbiennhantempToday> bbiennhantempTodays) {
+        this.bbiennhantempTodays = bbiennhantempTodays;
     }
     
     

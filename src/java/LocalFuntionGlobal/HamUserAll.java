@@ -905,6 +905,57 @@ public String uploadttinbiennhan(String khoa  ,String userid ,String iderror   ,
 
     }
  
+public String uploadbnoutmobile(String khoa  ,String userid  ) {
 
-    
+        try {
+            
+            String ketqua;
+            
+            Connection con = ConnectionProvider.getCon();
+            String fnCall = "{call ? := KH.PKS_HOIBAO_WEB_2018.XULY_UPLOAD_IMAGE_MOBILE(? ,?)}";
+            CallableStatement stm = con.prepareCall(fnCall);
+            stm.registerOutParameter(1, Types.VARCHAR);
+            stm.setString(2, khoa);
+            stm.setString(3,userid);
+            stm.execute();
+            ketqua = (String) stm.getString(1);
+            stm.close();
+            return ketqua;
+
+        } catch (SQLException ex) {
+
+          //  Bean.SystemBean.proMessError(AlertCustom.timMatKetNoiMang);
+            return "";
+
+        }
+
+    }
+ 
+
+public String uploadbnoutmobileerror(String khoa  ,String userid ,String filename ) {
+
+        try {
+            
+            String ketqua;
+            
+            Connection con = ConnectionProvider.getCon();
+            String fnCall = "{call ? := KH.PKS_HOIBAO_WEB_2018.UPLOAD_IMAGE_ERR_MOBILE(?,?,?)}";
+            CallableStatement stm = con.prepareCall(fnCall);
+            stm.registerOutParameter(1, Types.VARCHAR);
+            stm.setString(2, khoa);
+            stm.setString(3,userid);
+            stm.setString(4,filename);
+            stm.execute();
+            ketqua = (String) stm.getString(1);
+            stm.close();
+            return ketqua;
+
+        } catch (SQLException ex) {
+
+          //  Bean.SystemBean.proMessError(AlertCustom.timMatKetNoiMang);
+            return "";
+
+        }
+
+    }    
 }

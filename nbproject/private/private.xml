@@ -3,38 +3,36 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaohoanthanh.xhtml</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/HoibaoManagedBean.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinharexacnhanerror.xhtml</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinhact.xhtml</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/DmquanlyimageDao.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Connection16Provider.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Global/StaBienToanCuc.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/ChinhamainManagedBean.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/LoginManagerBean.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/capnhatttkhachhang.xhtml</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/index.xhtml</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/SystemBean.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinha.xhtml</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ServletBean/DisplayImage.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Provider16.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/Hamimage.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/XacminhDAO.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/FTPUploader.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/HamUserAll.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/chuanhoakh.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Connection16Provider.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/FunctionCustomer.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/ImageDao.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Provider.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/ChuanhoakhManagedBean.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/FunctionLocal.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/KhachhangDao.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/GlobalManagedBean.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/LoginDao.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/web/login.xhtml</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/ConnectionProvider.java</file>
-            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/CitylistDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ServletBean/DisplayImage.java</file>
             <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinhakiemtra.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/XacminhDAO.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/KhachhangDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinhact.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/ChinhamainManagedBean.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/DmquanlyimageDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/LoginDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/GlobalManagedBean.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/ConnectionProvider.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/ImageDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/Hamimage.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/capnhatttkhachhang.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinha.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/DatabaseDao/CitylistDao.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/dshshoibaonvchinharexacnhanerror.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Controller/LoginManagerBean.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/HamUserAll.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/Global/StaBienToanCuc.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/login.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/SystemBean.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Provider16.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/FTPUploader.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/web/chuanhoakh.xhtml</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/ConnectBean/Provider.java</file>
+            <file>file:/E:/Source/SourcePublic/WebHoibao/src/java/LocalFuntionGlobal/FunctionLocal.java</file>
         </group>
     </open-files>
 </project-private>
