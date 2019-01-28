@@ -59,7 +59,7 @@ public class LoginManagerBean implements Serializable {
      
         Boolean valid=null;      
         LoginDao databasedao = new LoginDao();
-        valid= databasedao.validate(username, password);
+        valid= databasedao.validate(username.toUpperCase(), password);
         
        if (!valid)
        {
